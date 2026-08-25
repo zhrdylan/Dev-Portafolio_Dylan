@@ -1,0 +1,110 @@
+/* ==========================================================================
+   ANIMATIONS.CSS - Keyframes, Transiciones a 60 FPS y Microinteracciones
+   Clase 03: Transiciones, @keyframes, animation-fill-mode, 60fps (transform/opacity)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Definición de Keyframes
+   -------------------------------------------------------------------------- */
+
+/* Entrada suave con desplazamiento vertical */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Efecto de flotación sutil para el avatar */
+@keyframes floatAvatar {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Pulso de resplandor neón en bordes y sombras */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 25px var(--accent-glow);
+  }
+  50% {
+    box-shadow: 0 0 40px var(--accent-glow-cyan), 0 0 15px var(--accent-primary);
+  }
+}
+
+/* Ondulación de fondo */
+@keyframes backgroundShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Aplicación de Animaciones en Elementos
+   -------------------------------------------------------------------------- */
+
+/* Hero animado al cargar */
+article.tarjeta-hero {
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+figure.avatar-dev {
+  animation: floatAvatar 5s ease-in-out infinite, pulseGlow 4s ease-in-out infinite;
+}
+
+/* Entrada escalonada de secciones utilizando nth-child */
+main.contenedor-principal > section:nth-child(1) {
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+}
+
+main.contenedor-principal > section:nth-child(2) {
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+
+main.contenedor-principal > section:nth-child(3) {
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+}
+
+main.contenedor-principal > section:nth-child(4) {
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+}
+
+main.contenedor-principal > section:nth-child(5) {
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+}
+
+/* Animación de entrada de los elementos de proyectos */
+ul.rejilla-proyectos > li:nth-child(1) {
+  animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+}
+
+ul.rejilla-proyectos > li:nth-child(2) {
+  animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
+}
+
+/* --------------------------------------------------------------------------
+   Accesibilidad: Reducción de movimiento para usuarios sensibles
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

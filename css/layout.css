@@ -1,0 +1,159 @@
+/* ==========================================================================
+   LAYOUT.CSS - Estructura semántica, Flexbox, Grid y Posicionamiento
+   Clase 03: Flexbox, Position (sticky/relative/absolute), z-index, @supports
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Encabezado Principal y Barra de Navegación Sticky
+   -------------------------------------------------------------------------- */
+header.hero-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  background-color: var(--bg-glass);
+  border-bottom: 1px solid var(--border-subtle);
+  transition: background-color var(--transition-normal), border-color var(--transition-normal);
+}
+
+/* Fallback y mejora progresiva con @supports para glassmorphism */
+@supports (backdrop-filter: blur(12px)) or (-webkit-backdrop-filter: blur(12px)) {
+  header.hero-header {
+    background-color: rgba(9, 12, 21, 0.75);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+}
+
+nav.barra-navegacion {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+nav.barra-navegacion > a.logo-marca {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+nav.barra-navegacion > ul.menu-enlaces {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+nav.barra-navegacion > ul.menu-enlaces > li > a {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  position: relative;
+  padding: 0.5rem 0;
+  transition: color var(--transition-fast);
+}
+
+/* Pseudo-elemento ::after para subrayado animado al hover */
+nav.barra-navegacion > ul.menu-enlaces > li > a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gradient-accent);
+  border-radius: var(--radius-full);
+  transition: width var(--transition-normal);
+}
+
+nav.barra-navegacion > ul.menu-enlaces > li > a:hover,
+nav.barra-navegacion > ul.menu-enlaces > li > a:focus {
+  color: var(--text-main);
+}
+
+nav.barra-navegacion > ul.menu-enlaces > li > a:hover::after,
+nav.barra-navegacion > ul.menu-enlaces > li > a:focus::after {
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   Contenedor Principal (Main) y Secciones
+   -------------------------------------------------------------------------- */
+main.contenedor-principal {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5.5rem;
+}
+
+section.seccion-bloque {
+  position: relative;
+  scroll-margin-top: 5.5rem; /* Ajuste para que el scroll del nav sticky no tape el título */
+}
+
+/* Encabezados de sección */
+header.encabezado-seccion {
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+header.encabezado-seccion > h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  letter-spacing: -0.5px;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+  position: relative;
+}
+
+/* Decoración con gradiente para el título */
+header.encabezado-seccion > h2::after {
+  content: '';
+  display: block;
+  width: 50%;
+  height: 3px;
+  background: var(--gradient-accent);
+  margin: 0.6rem auto 0;
+  border-radius: var(--radius-full);
+}
+
+header.encabezado-seccion > p {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0.75rem auto 0;
+}
+
+/* --------------------------------------------------------------------------
+   Pie de Página (Footer)
+   -------------------------------------------------------------------------- */
+footer.pie-pagina {
+  background-color: var(--bg-surface);
+  border-top: 1px solid var(--border-subtle);
+  padding: 3rem 1.5rem;
+  text-align: center;
+  position: relative;
+}
+
+footer.pie-pagina > p {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+footer.pie-pagina > p:first-child {
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-top: 0;
+}

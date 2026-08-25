@@ -1,0 +1,135 @@
+/* ==========================================================================
+   RESPONSIVE.CSS - Media Queries y Adaptabilidad Mobile / Tablet / Desktop
+   Clase 03: Responsive (@media), Flexbox en columnas, unidades relativas
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Tablets y Pantallas Medianas (<= 992px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 992px) {
+  article.tarjeta-hero {
+    gap: 2rem;
+    padding: 2.25rem;
+
+    & > figure.avatar-dev > img {
+      width: 200px;
+      height: 200px;
+    }
+  }
+
+  section.seccion-proyectos > ul.rejilla-proyectos {
+    grid-template-columns: 1fr;
+    max-width: 650px;
+    margin: 0 auto;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Móviles Grandes y Tablets Pequeñas (<= 768px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  nav.barra-navegacion {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+
+    & > ul.menu-enlaces {
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+
+  main.contenedor-principal {
+    padding: 1.5rem 1rem 3.5rem;
+    gap: 4rem;
+  }
+
+  article.tarjeta-hero {
+    flex-direction: column-reverse;
+    text-align: center;
+    padding: 2rem 1.5rem;
+
+    & > header.info-dev {
+      align-items: center;
+
+      & > p.descripcion-dev {
+        font-size: 1rem;
+      }
+    }
+
+    & > figure.avatar-dev > img {
+      width: 170px;
+      height: 170px;
+    }
+  }
+
+  ul.grupo-acciones {
+    justify-content: center;
+    width: 100%;
+  }
+
+  ul.rejilla-tecnologias {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+  }
+
+  address.seccion-contacto-info {
+    padding: 2rem 1.25rem;
+
+    & > ul.canales-contacto {
+      gap: 1.25rem;
+
+      & > li {
+        width: 100%;
+        max-width: none;
+
+        & > a.tarjeta-contacto-link {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  form.formulario-contacto {
+    padding: 1.5rem 1rem;
+
+    & > button.btn-enviar {
+      width: 100%;
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Móviles Pequeños (<= 480px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 480px) {
+  nav.barra-navegacion > ul.menu-enlaces {
+    gap: 0.85rem;
+  }
+
+  nav.barra-navegacion > ul.menu-enlaces > li > a {
+    font-size: 0.875rem;
+  }
+
+  ul.grupo-acciones > li {
+    width: 100%;
+
+    & > a,
+    & > button {
+      width: 100%;
+    }
+  }
+
+  ul.rejilla-tecnologias {
+    grid-template-columns: 1fr;
+  }
+
+  article.tarjeta-proyecto > header.cuerpo-proyecto {
+    padding: 1.25rem 1rem 0.5rem;
+  }
+
+  article.tarjeta-proyecto > footer.pie-tarjeta-proyecto {
+    padding: 0.75rem 1rem 1.25rem;
+  }
+}

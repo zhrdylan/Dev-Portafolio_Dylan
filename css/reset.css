@@ -1,0 +1,130 @@
+/* ==========================================================================
+   RESET.CSS - Variables de tema, reset de caja y estilos base
+   Clase 03: Variables CSS (:root), Box Model (box-sizing), Fallbacks & Herencia
+   ========================================================================== */
+
+:root {
+  /* Paleta de Colores Tecnológica & Moderna (Dark Tech) */
+  --bg-main: #090c15;
+  --bg-surface: #101526;
+  --bg-card: #151b33;
+  --bg-card-hover: #1c2444;
+  --bg-glass: rgba(16, 21, 38, 0.85);
+
+  /* Acentos de color */
+  --accent-primary: #6c63ff;      /* Violeta eléctrico */
+  --accent-secondary: #00d4ff;    /* Cyan neón */
+  --accent-tertiary: #a855f7;     /* Púrpura brillante */
+  --accent-glow: rgba(108, 99, 255, 0.35);
+  --accent-glow-cyan: rgba(0, 212, 255, 0.35);
+  --gradient-accent: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+  --gradient-subtle: linear-gradient(180deg, rgba(108, 99, 255, 0.08) 0%, rgba(0, 212, 255, 0.02) 100%);
+
+  /* Textos y Contraste */
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+  --text-highlight: #38bdf8;
+
+  /* Bordes y Sombras */
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-active: rgba(0, 212, 255, 0.4);
+  --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+  --shadow-hover: 0 20px 40px -15px rgba(108, 99, 255, 0.3);
+
+  /* Tipografía y Espaciado (Unidades relativas rem y clamp) */
+  --font-base: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'Consolas', 'Courier New', Courier, monospace;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-full: 9999px;
+  
+  /* Transiciones estándar (evitando transition: all por rendimiento) */
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset universal del Modelo de Caja */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Base del Documento */
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+  font-size: 100%;
+}
+
+body {
+  font-family: var(--font-base);
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.65;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  background-image: 
+    radial-gradient(circle at 15% 20%, rgba(108, 99, 255, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 85% 65%, rgba(0, 212, 255, 0.06) 0%, transparent 40%);
+  background-attachment: fixed;
+}
+
+/* Enlaces base */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+/* Elementos multimedia responsivos */
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Listas limpias */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Tipografía jerárquica */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-main);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+/* Párrafos legibles */
+p {
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+/* Etiquetas semánticas auxiliares */
+address {
+  font-style: normal;
+}
+
+figure {
+  margin: 0;
+}
+
+strong {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+em {
+  color: var(--accent-secondary);
+  font-style: normal;
+}
