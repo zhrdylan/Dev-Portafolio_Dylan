@@ -15,19 +15,32 @@
 </head>
 <body>
 
+  <!-- Ruedita de carga: tapa la pagina hasta que todo termina de cargar -->
+  <!-- main.js la oculta solo con la clase "oculto", sin codigo raro -->
+  <aside id="cargador" class="cargador" aria-label="Cargando página">
+    <p class="rueda" aria-hidden="true"></p>
+  </aside>
+
   <!-- Encabezado Principal y Barra de Navegación Sticky -->
   <header class="hero-header">
     <nav class="barra-navegacion">
       <a href="#inicio" class="logo-marca">
         &lt;Dylan.Dev /&gt;
       </a>
-      <ul class="menu-enlaces">
+      <!-- Boton menu movil: muestra/oculta los enlaces (mejora simple) -->
+      <button id="btn-menu" class="btn-menu" aria-label="Abrir menu" aria-expanded="false">☰</button>
+      <ul class="menu-enlaces" id="menu-enlaces">
         <li><a href="#inicio">Inicio</a></li>
         <li><a href="#sobre-mi">Sobre Mí</a></li>
         <li><a href="#tecnologias">Tecnologías</a></li>
         <li><a href="#proyectos">Proyectos</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
+      <!-- Interruptor tema sol/luna: cambia claro/oscuro y se recuerda -->
+      <button id="btn-tema" class="switch-tema" aria-label="Cambiar tema">
+        <em class="icono-tema sol" aria-hidden="true">☀</em>
+        <em class="icono-tema luna" aria-hidden="true">☾</em>
+      </button>
     </nav>
   </header>
 
@@ -43,9 +56,13 @@
           <p class="descripcion-dev">
             Enfocado en el desarrollo <strong>Full Stack</strong>, la ingeniería de sistemas automatizados y la integración de <strong>Inteligencia Artificial</strong>. Creo aplicaciones web dinámicas, arquitecturas escalables, soluciones IoT con Arduino y flujos inteligentes con <strong>Agentes de IA y Protocolo MCP</strong>.
           </p>
+          <!-- Frase desde datos.json (Ejercicio 2): se llena con JS, no escribir a mano -->
+          <blockquote id="frase-perfil" class="frase-perfil">Cargando frase...</blockquote>
           <ul class="grupo-acciones">
             <li><a href="#proyectos" class="btn-primario">Ver Proyectos</a></li>
             <li><a href="#contacto" class="btn-secundario">Contáctame</a></li>
+            <!-- Mejora: descargar hoja de vida en PDF -->
+            <li><a href="assets/HDV/HOJA DE VIDA DYLAN HERNÁNDEZ.pdf" class="btn-secundario" download>Descargar HDV</a></li>
           </ul>
         </header>
         <figure class="avatar-dev">
@@ -176,7 +193,9 @@
         <li>
           <article class="tarjeta-tecnologia">
             <figure class="icono-tech-figura">
-              <img src="assets/img/iconos/mcp.webp" alt="Icono de Model Context Protocol">
+              <!-- Icono MCP: se intercambia segun el tema (oscuro/claro) desde CSS -->
+              <img class="icono-mcp-oscuro" src="assets/img/iconos/mcp.webp" alt="Icono de Model Context Protocol">
+              <img class="icono-mcp-claro" src="assets/img/iconos/mcp-light.png" alt="Icono de Model Context Protocol para tema claro">
             </figure>
             <header>
               <h3>Protocolo MCP</h3>
@@ -284,6 +303,8 @@
               <textarea id="mensaje" name="mensaje" placeholder="Cuéntame sobre tu proyecto, objetivos o propuesta..." required></textarea>
             </label>
           </fieldset>
+          <!-- Aviso anti-spam (Ejercicio 4): aqui aparece "No se permiten enlaces..." -->
+          <p id="aviso-contacto" class="aviso-contacto" role="alert" aria-live="polite"></p>
           <button type="submit" class="btn-enviar">Enviar Mensaje</button>
         </form>
 
@@ -315,8 +336,13 @@
 
   <!-- Pie de Página -->
   <footer class="pie-pagina">
-    <p>&copy; 2026 Dylan. Desarrollador Full Stack &amp; IA.</p>
+    <p>&copy; <em id="ano-footer">2026</em> Dylan. Desarrollador Full Stack &amp; IA.</p>
+    <!-- Reloj en vivo (Ejercicio 3): se actualiza cada segundo desde js/Reloj.js -->
+    <p>Hora actual: <time id="reloj">--:--:--</time></p>
   </footer>
+
+  <!-- Script principal (type=module permite usar import/export) -->
+  <script type="module" src="js/main.js"></script>
 
 </body>
 </html>

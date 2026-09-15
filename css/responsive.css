@@ -7,6 +7,29 @@
    Tablets y Pantallas Medianas (<= 992px)
    -------------------------------------------------------------------------- */
 @media (max-width: 992px) {
+  nav.barra-navegacion {
+    gap: 0.75rem;
+    padding: 0.8rem 1rem;
+
+    & > ul.menu-enlaces {
+      gap: 1rem;
+    }
+
+    & > ul.menu-enlaces > li > a {
+      font-size: 0.9rem;
+    }
+
+    & > button.switch-tema {
+      padding: 0.25rem;
+    }
+
+    & > button.switch-tema > em.icono-tema {
+      width: 2rem;
+      height: 2rem;
+      font-size: 1.1rem;
+    }
+  }
+
   article.tarjeta-hero {
     gap: 2rem;
     padding: 2.25rem;
@@ -29,14 +52,66 @@
    -------------------------------------------------------------------------- */
 @media (max-width: 768px) {
   nav.barra-navegacion {
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.8rem 1rem;
 
+    /* Fila 1: logo izquierda, tema + hamburguesa derecha */
+    & > a.logo-marca {
+      order: 1;
+      margin-right: 0;
+      font-size: 1.1rem;
+    }
+
+    & > button.switch-tema {
+      order: 2;
+      margin-left: auto; /* empuja el interruptor a la derecha */
+    }
+
+    & > button.btn-menu {
+      order: 3;
+      display: inline-flex;
+      margin-left: 0;
+    }
+
+    /* Fila 2: menu desplegable tipo tarjeta */
     & > ul.menu-enlaces {
-      gap: 1.25rem;
-      flex-wrap: wrap;
-      justify-content: center;
+      order: 4;
+      display: none;
+      width: 100%;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.25rem;
+      text-align: center;
+      padding: 0.75rem;
+      margin-top: 0.5rem;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-card);
+    }
+
+    /* Cada enlace ocupa toda la fila y es facil de tocar */
+    & > ul.menu-enlaces > li > a {
+      display: block;
+      padding: 0.7rem 1rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+    }
+
+    & > ul.menu-enlaces > li > a:hover {
+      background-color: rgba(108, 99, 255, 0.1);
+    }
+
+    /* Quitamos el subrayado animado en movil (molesta en lista vertical) */
+    & > ul.menu-enlaces > li > a::after {
+      display: none;
+    }
+
+    & > ul.menu-enlaces.abierto {
+      display: flex;
     }
   }
 
@@ -104,12 +179,18 @@
    Móviles Pequeños (<= 480px)
    -------------------------------------------------------------------------- */
 @media (max-width: 480px) {
-  nav.barra-navegacion > ul.menu-enlaces {
-    gap: 0.85rem;
-  }
+  nav.barra-navegacion {
+    gap: 0.5rem;
+    padding: 0.7rem 0.8rem;
 
-  nav.barra-navegacion > ul.menu-enlaces > li > a {
-    font-size: 0.875rem;
+    & > a.logo-marca {
+      font-size: 1rem;
+    }
+
+    & > ul.menu-enlaces > li > a {
+      font-size: 0.9rem;
+      padding: 0.65rem 0.8rem;
+    }
   }
 
   ul.grupo-acciones > li {
@@ -118,6 +199,27 @@
     & > a,
     & > button {
       width: 100%;
+    }
+  }
+
+  /* Hero sin recortes en pantallas pequeñas: el h1 usa el ancho
+     de pantalla (no minimo fijo de PC) y el badge puede partirse */
+  article.tarjeta-hero > header.info-dev {
+    min-width: 0;
+    max-width: 100%;
+
+    & > h1 {
+      font-size: clamp(1.7rem, 9vw, 2.2rem);
+      overflow-wrap: break-word;
+      max-width: 100%;
+    }
+
+    & > p.badge-saludo {
+      max-width: 100%;
+      font-size: 0.75rem;
+      text-align: center;
+      flex-wrap: wrap;
+      justify-content: center;
     }
   }
 

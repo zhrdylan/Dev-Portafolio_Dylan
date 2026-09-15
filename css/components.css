@@ -191,6 +191,21 @@ ul.rejilla-tecnologias {
         height: 100%;
         object-fit: contain;
       }
+
+      /* Icono MCP por tema: en oscuro se ve el blanco, en claro el negro */
+      /* Por defecto (oscuro) mostramos mcp.webp y ocultamos mcp-light.png */
+      & > img.icono-mcp-claro {
+        display: none;
+      }
+    }
+
+    /* En tema claro invertimos: ocultamos el blanco y mostramos el negro */
+    :root[data-theme="light"] & > figure.icono-tech-figura > img.icono-mcp-oscuro {
+      display: none;
+    }
+
+    :root[data-theme="light"] & > figure.icono-tech-figura > img.icono-mcp-claro {
+      display: block;
     }
 
     & > header {
@@ -444,6 +459,45 @@ form.formulario-contacto {
       box-shadow: 0 8px 25px var(--accent-glow);
     }
   }
+}
+
+/* Frase del perfil (Ejercicio 2): viene de datos.json */
+blockquote.frase-perfil {
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--accent-secondary);
+  border-left: 3px solid var(--accent-primary);
+  padding-left: 1rem;
+  margin: 0;
+  max-width: 550px;
+  line-height: 1.6;
+}
+
+/* Aviso del formulario (Ejercicio 4: anti-spam) */
+p.aviso-contacto {
+  font-size: 0.9rem;
+  font-weight: 600;
+  min-height: 1.2em; /* evita saltos cuando aparece */
+  color: var(--accent-secondary);
+}
+
+/* Cuando hay error, el JS escribe texto y se ve en rojo suave */
+p.aviso-contacto:not(:empty) {
+  color: #f87171;
+}
+
+/* Reloj del footer (Ejercicio 3) */
+footer.pie-pagina time#reloj {
+  font-family: var(--font-mono);
+  color: var(--accent-secondary);
+  font-weight: 600;
+}
+
+/* Año del footer */
+footer.pie-pagina em#ano-footer {
+  color: inherit;
+  font-style: normal;
+  font-weight: inherit;
 }
 
 /* Separador y texto para canales directos */

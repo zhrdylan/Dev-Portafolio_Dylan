@@ -1,37 +1,48 @@
-# ⚡ Portafolio de Desarrollo — Dylan (v2)
+# ⚡ Portafolio de Desarrollo — Dylan (v3)
 
-Bienvenido al repositorio oficial del **Portafolio Profesional de Dylan**. Esta versión (**v2**) implementa una arquitectura web moderna, interactiva y de alto impacto visual orientada al desarrollo **Full Stack**, la ingeniería de **sistemas automatizados IoT con Arduino** y el ecosistema de **Inteligencia Artificial (Agentes de IA y Protocolo MCP)**, construida con **HTML5 100% Semántico** y **CSS Modular**, aplicando los fundamentos avanzados de la **Clase 03**.
+Bienvenido al repositorio oficial del **Portafolio Profesional de Dylan**. Esta versión (**v3 — Actividad Clase 04: POO, JSON, guardas y reloj**) suma JavaScript modular sobre la base de la v2 (HTML5 semántico + CSS modular de la Clase 03): clases y módulos ES, datos externos en JSON, validación con cláusulas de guarda, reloj en vivo y mejoras de experiencia (tema claro/oscuro persistente, menú móvil, pantalla de carga y descarga de hoja de vida).
 
 ---
 
 ## 🚀 Características Principales
 
-- **Estructura HTML5 Semántica Estricta:** Construido sin etiquetas genéricas innecesarias (`0 <div>`, `0 <span>`). Uso exhaustivo de `<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<figure>`, `<figcaption>`, `<address>`, `<form>`, `<fieldset>`, `<legend>`, `<label>`, `<input>`, `<textarea>`, `<button>`, `<ul>`, `<li>`, `<h1>`–`<h3>`, `<p>`, `<a>`, `<img>`, `<video>`, `<strong>` y `<em>`.
-- **Enfoque Tecnológico Full Stack, IoT & IA:** Presentación especializada en aplicaciones web completas, ingeniería electrónica con microcontroladores Arduino, automatización de fluidos con relés y bombas, y desarrollo de sistemas basados en Inteligencia Artificial, Agentes Autónomos y Protocolo MCP (Model Context Protocol).
+- **Estructura HTML5 Semántica Estricta:** Construido sin etiquetas genéricas innecesarias (`0 <div>`, `0 <span>`). Uso exhaustivo de `<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<figure>`, `<figcaption>`, `<address>`, `<form>`, `<fieldset>`, `<legend>`, `<label>`, `<input>`, `<textarea>`, `<button>`, `<ul>`, `<li>`, `<h1>`–`<h3>`, `<p>`, `<a>`, `<img>`, `<video>`, `<strong>`, `<em>`, `<blockquote>` y `<time>`.
+- **JavaScript Modular (Clase 04):** 4 archivos en `js/` con `import`/`export`, cargados desde un único punto de entrada (`js/main.js` con `type="module"`). Código simple y comentado en español.
+  - `Portafolio.js` — clase `Portafolio` con `cargar()` y `pintarFrase()`: lee `datos.json` con `fetch` y muestra la frase en el hero. Si cambias la frase en el JSON y recargas, cambia en la página sin tocar HTML ni JS.
+  - `Reloj.js` — clase `Reloj`: muestra la hora viva en el footer (`<time id="reloj">`) y la actualiza cada segundo con `setInterval`.
+  - `Contacto.js` — validación con **cláusulas de guarda** (`if (...) return;`) más **guarda anti-spam**: si el mensaje contiene `http` muestra un aviso y sale con `return` antes de enviar; si pasa, envía con `fetch` (POST) y limpia el formulario.
+  - `main.js` — importa y arranca todo: frase, reloj, formulario, interruptor de tema, menú móvil y año automático del footer.
+- **Interruptor de Tema Sol/Luna:** pastilla con iconos `☀`/`☾` en el nav. Alterna tema oscuro/claro cambiando `data-theme` (solo variables CSS) y **recuerda la elección con `localStorage`** aunque se recargue la página. El icono MCP también cambia según el tema (`mcp.webp` en oscuro, `mcp-light.png` en claro).
+- **Menú Móvil Abre/Cierra:** botón `☰`/`✖` que muestra u oculta los enlaces en pantallas pequeñas (menú tipo tarjeta) y se cierra solo al elegir un enlace.
+- **Pantalla de Carga:** overlay con ruedita giratoria (`@keyframes girar`) que tapa la página hasta el evento `load` y luego se desvanece (con respaldo de 4 segundos).
+- **Descarga de Hoja de Vida:** botón "Descargar HDV" en el hero con atributo `download` (`assets/HDV/HOJA DE VIDA DYLAN HERNÁNDEZ.pdf`).
+- **Avatar Flotante:** la foto sube y baja suavemente en bucle (`@keyframes flotar`).
+- **Formulario de Contacto:** validación nativa + guardas JS + aviso anti-spam (`#aviso-contacto`), seguido por las tarjetas de canales directos (GitHub y Gmail).
+- **Catálogo de Tecnologías con Iconos Dedicados:** Python, PHP, MySQL, JavaScript, HTML5, CSS3, IA & Agentes y Protocolo MCP (con variante clara/oscura).
 - **Proyectos de Ingeniería con Demostraciones Multimedia:**
-  - **Proyecto 1: Sistema Automatizado con Arduino & Control Eléctrico:** Microcontrolador Arduino, circuito integrado en protoboard, sensores de lectura en tiempo real, módulo de relé (*relay*) para conmutación de potencia y electrobomba sumergible para control autónomo de flujo con video demostrativo.
-  - **Proyecto 2: Plataforma SIREC:** Sistema especializado de registro, control y seguimiento operativo con persistencia en MySQL y arquitectura web responsiva.
-- **Formulario de Contacto en la Cabecera de la Sección:** Formulario interactivo principal con validación nativa y campos completos, seguido por las tarjetas de canales directos (GitHub y Gmail).
-- **Catálogo de Tecnologías con Iconos Dedicados:** Iconos nítidos para Python, PHP, MySQL, JavaScript, HTML5, CSS3, IA & Agentes y Protocolo MCP.
-- **Arquitectura CSS Modular:** 5 hojas de estilo estructuradas (`reset.css`, `layout.css`, `components.css`, `animations.css`, `responsive.css`).
-- **Paleta Dark Tech:** Fondo oscuro `#090c15`, acentos en violeta eléctrico (`#6c63ff`) y cyan neón (`#00d4ff`), resplandor *glow* y *glassmorphism*.
-- **Animaciones a 60 FPS:** Entradas con `@keyframes fadeInUp`, flotación del avatar `floatAvatar` y pulso `pulseGlow`, con soporte de accesibilidad `prefers-reduced-motion`.
+  - **Proyecto 1: Sistema Automatizado con Arduino & Control Eléctrico:** Arduino, protoboard, sensores en tiempo real, módulo relé y electrobomba, con video demostrativo.
+  - **Proyecto 2: Plataforma SIREC:** registro, control y seguimiento operativo con persistencia en MySQL.
+- **Arquitectura CSS Modular:** 5 hojas (`reset.css`, `layout.css`, `components.css`, `animations.css`, `responsive.css`). `animations.css` es mínimo a propósito: ruedita + flotar + `prefers-reduced-motion`.
+- **Paleta Dual:** modo oscuro `#090c15` con violeta eléctrico (`#6c63ff`) y cyan neón (`#00d4ff`) + modo claro `#f1f5f9` con las mismas variables.
+- **Responsive verificado a 320/360px:** hero sin recortes (título fluido + badge que se parte en 2 líneas), grids a 1 columna y botones a ancho completo.
 
 ---
 
 ## 🎨 Paleta de Colores y Sistema de Diseño
 
-| Variable CSS | Valor Hexadecimal / RGBA | Propósito en la UI |
-|---|---|---|
-| `--bg-main` | `#090c15` | Fondo principal (negro azulado profundo) |
-| `--bg-surface` | `#101526` | Superficie de secciones y tarjetas secundarias |
-| `--bg-card` | `#151b33` | Fondo de tarjetas de proyectos y componentes |
-| `--accent-primary` | `#6c63ff` | Violeta eléctrico (acento primario) |
-| `--accent-secondary` | `#00d4ff` | Cyan neón (acento secundario y estados activos) |
-| `--accent-glow` | `rgba(108, 99, 255, 0.35)` | Resplandor difuminado para botones y avatar |
-| `--text-main` | `#f8fafc` | Texto principal de alto contraste |
-| `--text-muted` | `#94a3b8` | Texto secundario y descripciones |
-| `--border-subtle` | `rgba(255, 255, 255, 0.08)` | Bordes sutiles para delimitar tarjetas |
+| Variable CSS | Modo oscuro | Modo claro | Propósito en la UI |
+|---|---|---|---|
+| `--bg-main` | `#090c15` | `#f1f5f9` | Fondo principal |
+| `--bg-surface` | `#101526` | `#ffffff` | Superficie de secciones y tarjetas secundarias |
+| `--bg-card` | `#151b33` | `#ffffff` | Fondo de tarjetas y componentes |
+| `--accent-primary` | `#6c63ff` | `#6c63ff` | Violeta eléctrico (acento primario) |
+| `--accent-secondary` | `#00d4ff` | `#00d4ff` | Cyan neón (acento secundario) |
+| `--accent-glow` | `rgba(108, 99, 255, 0.35)` | `rgba(108, 99, 255, 0.35)` | Resplandor de botones y avatar |
+| `--text-main` | `#f8fafc` | `#0f172a` | Texto principal |
+| `--text-muted` | `#94a3b8` | `#475569` | Texto secundario |
+| `--border-subtle` | `rgba(255, 255, 255, 0.08)` | `rgba(15, 23, 42, 0.1)` | Bordes sutiles |
+
+El tema se cambia con `<html data-theme="light">` (lo pone `main.js`); todo el sitio reacciona solo con variables.
 
 ---
 
@@ -41,14 +52,21 @@ Bienvenido al repositorio oficial del **Portafolio Profesional de Dylan**. Esta 
 Dev-Portafolio_Dylan/
 ├── index.html                  # Maquetación semántica principal (0 divs, 0 spans)
 ├── README.md                   # Documentación técnica del proyecto
-├── GUIA.md                     # Guía de referencia de la Clase 03
+├── datos.json                  # Datos del perfil (nombre, titulo, frase para el hero)
+├── js/
+│   ├── main.js                 # Punto de entrada: arranca frase, reloj, form, tema y menú
+│   ├── Portafolio.js           # Clase Portafolio: fetch del JSON + pintarFrase()
+│   ├── Reloj.js                # Clase Reloj: hora viva del footer con setInterval
+│   └── Contacto.js             # Guardas de validación + anti-spam http + fetch POST
 ├── css/
-│   ├── reset.css               # Reset de caja, variables CSS (:root) y estilos base
-│   ├── layout.css              # Header sticky, nav, contenedor main, secciones y footer
-│   ├── components.css          # Tarjetas de proyectos, grid tech, formulario y botones
-│   ├── animations.css          # Keyframes (@keyframes), transiciones y microinteracciones
-│   └── responsive.css          # Media queries para móviles, tablets y pantallas pequeñas
+│   ├── reset.css               # Reset de caja, variables y tema claro, scroll suave
+│   ├── layout.css              # Header sticky, nav, interruptor sol/luna, main y footer
+│   ├── components.css          # Hero, frase, aviso, reloj, grids, formulario y botones
+│   ├── animations.css          # Ruedita de carga (girar) + avatar flotante (flotar)
+│   └── responsive.css          # Menú móvil tipo tarjeta + ajustes 768px / 480px
 └── assets/
+    ├── HDV/
+    │   └── HOJA DE VIDA DYLAN HERNÁNDEZ.pdf  # Hoja de vida descargable
     ├── img/
     │   ├── dev/
     │   │   └── Dylan.png       # Fotografía del desarrollador
@@ -62,7 +80,8 @@ Dev-Portafolio_Dylan/
     │   │   ├── html-5.png      # Icono de HTML5
     │   │   ├── css.png         # Icono de CSS3
     │   │   ├── IA.png          # Icono de IA & Agentes
-    │   │   └── mcp.webp        # Icono de Model Context Protocol
+    │   │   ├── mcp.webp        # Icono MCP (tema oscuro)
+    │   │   └── mcp-light.png   # Icono MCP (tema claro)
     │   └── proyectos/
     │       ├── Project_1.png   # Portada de Proyecto 1 (Sistema Automatizado con Arduino)
     │       └── Project_2.png   # Portada de Proyecto 2 (Plataforma SIREC)
@@ -70,6 +89,17 @@ Dev-Portafolio_Dylan/
         ├── automatizado.mp4    # Demostración en video de Proyecto 1 (Circuito y Bomba)
         └── sirec.mp4           # Demostración en video de Proyecto 2
 ```
+
+---
+
+## ✅ Criterios de la Actividad (cómo probarlos)
+
+1. **Frase desde JSON:** cambia `frase` en `datos.json`, recarga → cambia en el hero sin tocar HTML ni JS.
+2. **Reloj:** mira el footer unos segundos → la hora avanza sola; el código vive en `js/Reloj.js`, `main.js` solo la usa.
+3. **Anti-spam:** envía `visita http://algo` → se bloquea con aviso y no se envía; un mensaje normal sí se envía (alerta + POST de prueba).
+4. **Tema:** pon oscuro, recarga → sigue oscuro (y al revés con claro).
+5. **Menú móvil:** en vista ≤768px, `☰` abre/cierra el menú.
+6. **Consola:** F12 → sin errores rojos.
 
 ---
 
@@ -83,7 +113,9 @@ Dev-Portafolio_Dylan/
 
 ## 💻 Cómo Visualizar el Portafolio
 
+> ⚠️ Usa **Live Server** (no abras con doble clic como `file://`): el `fetch` de `datos.json` y los módulos ES (`import`/`export`) requieren servidor local.
+
 1. Clona o descarga este repositorio en tu equipo local.
 2. Abre la carpeta del proyecto en tu editor de código preferido (ej. Visual Studio Code).
-3. Abre el archivo `index.html` directamente en tu navegador web o mediante una extensión de servidor local como *Live Server*.
-4. Prueba la interactividad de las tarjetas de proyectos, la reproducción de videos, el catálogo de tecnologías y el formulario de contacto.
+3. Inicia Live Server (o `npx serve`) y abre la URL local en tu navegador.
+4. Prueba: ruedita de carga, frase del hero, reloj del footer, interruptor sol/luna (recarga para ver que se recuerda), menú móvil, formulario con y sin `http`, y descarga del HDV.

@@ -1,26 +1,53 @@
 /* ==========================================================================
-   ANIMATIONS.CSS - Keyframes, Transiciones a 60 FPS y Microinteracciones
-   Clase 03: Transiciones, @keyframes, animation-fill-mode, 60fps (transform/opacity)
+   ANIMATIONS.CSS - Solo lo necesario: ruedita de carga + avatar flotante
+   (El scroll suave esta en reset.css con scroll-behavior: smooth)
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   Definición de Keyframes
+   1. Ruedita de carga (se muestra mientras la pagina termina de cargar)
    -------------------------------------------------------------------------- */
 
-/* Entrada suave con desplazamiento vertical */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(28px);
-  }
+/* Fondo que tapa la pagina al inicio */
+aside.cargador {
+  position: fixed; /* queda quieto aunque hagas scroll */
+  inset: 0; /* ocupa toda la pantalla */
+  z-index: 200; /* por encima de todo, incluso del nav */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-main);
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+/* La ruedita: un circulo con solo el borde de arriba en color */
+aside.cargador > p.rueda {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 4px solid var(--border-subtle);
+  border-top-color: var(--accent-secondary);
+  animation: girar 0.8s linear infinite; /* gira sin parar */
+  margin: 0;
+}
+
+/* Giro completo de 0 a 360 grados */
+@keyframes girar {
   to {
-    opacity: 1;
-    transform: translateY(0);
+    transform: rotate(360deg);
   }
 }
 
-/* Efecto de flotación sutil para el avatar */
-@keyframes floatAvatar {
+/* Estado oculto: main.js lo pone cuando la pagina ya cargo */
+aside.cargador.oculto {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   2. Avatar flotante (sube y baja suave, sin parar)
+   -------------------------------------------------------------------------- */
+
+@keyframes flotar {
   0%, 100% {
     transform: translateY(0);
   }
@@ -29,74 +56,12 @@
   }
 }
 
-/* Pulso de resplandor neón en bordes y sombras */
-@keyframes pulseGlow {
-  0%, 100% {
-    box-shadow: 0 0 25px var(--accent-glow);
-  }
-  50% {
-    box-shadow: 0 0 40px var(--accent-glow-cyan), 0 0 15px var(--accent-primary);
-  }
-}
-
-/* Ondulación de fondo */
-@keyframes backgroundShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-/* --------------------------------------------------------------------------
-   Aplicación de Animaciones en Elementos
-   -------------------------------------------------------------------------- */
-
-/* Hero animado al cargar */
-article.tarjeta-hero {
-  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
 figure.avatar-dev {
-  animation: floatAvatar 5s ease-in-out infinite, pulseGlow 4s ease-in-out infinite;
-}
-
-/* Entrada escalonada de secciones utilizando nth-child */
-main.contenedor-principal > section:nth-child(1) {
-  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
-}
-
-main.contenedor-principal > section:nth-child(2) {
-  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
-}
-
-main.contenedor-principal > section:nth-child(3) {
-  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
-}
-
-main.contenedor-principal > section:nth-child(4) {
-  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
-}
-
-main.contenedor-principal > section:nth-child(5) {
-  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
-}
-
-/* Animación de entrada de los elementos de proyectos */
-ul.rejilla-proyectos > li:nth-child(1) {
-  animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
-}
-
-ul.rejilla-proyectos > li:nth-child(2) {
-  animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
+  animation: flotar 5s ease-in-out infinite;
 }
 
 /* --------------------------------------------------------------------------
-   Accesibilidad: Reducción de movimiento para usuarios sensibles
+   Accesibilidad: si el usuario pide menos movimiento, apagamos todo
    -------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   *,

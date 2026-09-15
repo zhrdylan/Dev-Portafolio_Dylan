@@ -46,6 +46,25 @@
   --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Tema claro: se activa con <html data-theme="light"> desde main.js */
+/* Solo cambiamos variables, todo el sitio cambia solo */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg-main: #f1f5f9;
+  --bg-surface: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-hover: #eef2ff;
+  --bg-glass: rgba(255, 255, 255, 0.85);
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --text-dim: #64748b;
+  --text-highlight: #4f46e5;
+  --border-subtle: rgba(15, 23, 42, 0.1);
+  --border-active: rgba(108, 99, 255, 0.5);
+  --shadow-card: 0 10px 30px -10px rgba(15, 23, 42, 0.15);
+  --shadow-hover: 0 20px 40px -15px rgba(108, 99, 255, 0.25);
+}
+
 /* Reset universal del Modelo de Caja */
 *,
 *::before,

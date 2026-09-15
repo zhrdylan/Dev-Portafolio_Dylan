@@ -17,9 +17,10 @@ header.hero-header {
 }
 
 /* Fallback y mejora progresiva con @supports para glassmorphism */
+/* Usamos la variable --bg-glass para que funcione en tema oscuro Y claro */
 @supports (backdrop-filter: blur(12px)) or (-webkit-backdrop-filter: blur(12px)) {
   header.hero-header {
-    background-color: rgba(9, 12, 21, 0.75);
+    background-color: var(--bg-glass);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
   }
@@ -28,11 +29,10 @@ header.hero-header {
 nav.barra-navegacion {
   max-width: 1140px;
   margin: 0 auto;
-  padding: 1rem 1.5rem;
+  padding: 0.8rem 1.5rem;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 nav.barra-navegacion > a.logo-marca {
@@ -46,12 +46,15 @@ nav.barra-navegacion > a.logo-marca {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  white-space: nowrap; /* el logo nunca se parte en dos lineas */
+  margin-right: auto; /* empuja todo lo demas a la derecha */
 }
 
 nav.barra-navegacion > ul.menu-enlaces {
   display: flex;
   align-items: center;
-  gap: 1.75rem;
+  gap: 1.5rem;
+  margin-left: auto; /* los enlaces quedan centrados-derecha */
 }
 
 nav.barra-navegacion > ul.menu-enlaces > li > a {
@@ -84,6 +87,103 @@ nav.barra-navegacion > ul.menu-enlaces > li > a:focus {
 nav.barra-navegacion > ul.menu-enlaces > li > a:hover::after,
 nav.barra-navegacion > ul.menu-enlaces > li > a:focus::after {
   width: 100%;
+}
+
+/* Interruptor de tema estilo sol/luna (como la imagen de referencia) */
+/* Un solo <button> con dos iconos <em>: simple, sin div/span */
+button.switch-tema {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.3rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  /* Modo oscuro por defecto: pastilla azul noche */
+  background-color: #0f172a;
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-card);
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+button.switch-tema:hover {
+  border-color: var(--accent-secondary);
+  transform: translateY(-1px);
+}
+
+/* Quitamos el borde blanco grueso al hacer clic (focus) */
+button.switch-tema:focus-visible,
+button.btn-menu:focus-visible {
+  outline: 2px solid var(--accent-secondary);
+  outline-offset: 2px;
+}
+
+/* Cada icono es un circulo */
+button.switch-tema > em.icono-tema {
+  font-style: normal;
+  width: 2.2rem;
+  height: 2.2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  line-height: 1;
+  border-radius: var(--radius-full);
+  transition: background-color var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast);
+  user-select: none;
+}
+
+/* --- Estado oscuro (por defecto): luna activa blanca, sol apagado --- */
+button.switch-tema > em.sol {
+  color: #64748b; /* gris apagado */
+  background-color: transparent;
+}
+
+button.switch-tema > em.luna {
+  color: #ffffff;
+  background-color: #2b365e; /* circulo activo azul grisaceo */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* --- Estado claro: pastilla gris clara, sol activo --- */
+:root[data-theme="light"] button.switch-tema {
+  background-color: #e8edf5;
+  border-color: rgba(15, 23, 42, 0.08);
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.08);
+}
+
+:root[data-theme="light"] button.switch-tema > em.sol {
+  color: #0f172a;
+  background-color: #d7dfea; /* circulo activo gris */
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.12);
+}
+
+:root[data-theme="light"] button.switch-tema > em.luna {
+  color: #94a3b8;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+/* Boton hamburguesa: oculto en PC, visible en movil */
+button.btn-menu {
+  font-family: inherit;
+  font-size: 1.1rem;
+  font-weight: 700;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: none; /* solo movil (ver responsive.css) */
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+  background-color: var(--bg-surface);
+  color: var(--text-main);
+  cursor: pointer;
+  transition: border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+button.btn-menu:hover {
+  border-color: var(--accent-secondary);
+  transform: translateY(-1px);
 }
 
 /* --------------------------------------------------------------------------
